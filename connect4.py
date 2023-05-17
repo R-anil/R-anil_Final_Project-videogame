@@ -1,10 +1,23 @@
 # File created by: Ryan Anil
-
+# import libraries
 import numpy as np
 import pygame as pg
 import sys
 import math
  
+'''
+Create a Connect 4 multiplayer game using pygame
+
+Sources: https://www.youtube.com/watch?v=UYgyRArKDEs
+Sources: https://www.youtube.com/watch?v=zD-Xuu_Jpe4 
+Sources: https://www.youtube.com/watch?v=SDz3P_Ctm7U
+Sources: https://www.youtube.com/watch?v=krCKxcrHeN4
+
+'''
+
+
+
+
 BLUE = (0,0,255)
 BLACK = (0,0,0)
 RED = (255,0,0)
@@ -125,12 +138,12 @@ while not game_over:
                     drop_piece(board, row, col, 1)
  
                     if winning_move(board, 1):
-                        label = myfont.render("Player 1 wins!!", 1, RED)
+                        label = myfont.render("Player 1 wins!!!", 1, RED)
                         screen.blit(label, (40,10))
                         game_over = True
  
  
-            # # Ask for Player 2 Input
+            # Ask for Player 2 Input
             else:               
                 posx = event.pos[0]
                 col = int(math.floor(posx/SQUARESIZE))
@@ -140,7 +153,7 @@ while not game_over:
                     drop_piece(board, row, col, 2)
  
                     if winning_move(board, 2):
-                        label = myfont.render("Player 2 wins!!", 1, YELLOW)
+                        label = myfont.render("Player 2 wins!!!", 1, YELLOW)
                         screen.blit(label, (40,10))
                         game_over = True
  
