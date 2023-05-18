@@ -6,26 +6,28 @@ import sys
 import math
  
 '''
+Goal:
 Create a Connect 4 multiplayer game using pygame
 
 Sources: https://www.youtube.com/watch?v=UYgyRArKDEs
 Sources: https://www.youtube.com/watch?v=zD-Xuu_Jpe4 
 Sources: https://www.youtube.com/watch?v=SDz3P_Ctm7U
 Sources: https://www.youtube.com/watch?v=krCKxcrHeN4
+Sources: https://www.askpython.com/python/examples/connect-four-game
 
 '''
-
-
-
-
+# RGB values
 BLUE = (0,0,255)
 BLACK = (0,0,0)
 RED = (255,0,0)
 YELLOW = (255,255,0)
- 
+
+# number of rows and columns
+# global variables
 ROW_COUNT = 6
 COLUMN_COUNT = 7
  
+# np.zeros used to create a matrix full of zeroes
 def create_board():
     board = np.zeros((ROW_COUNT,COLUMN_COUNT))
     return board
@@ -70,11 +72,12 @@ def winning_move(board, piece):
                 return True
  
 def draw_board(board):
+    # Create board
     for c in range(COLUMN_COUNT):
         for r in range(ROW_COUNT):
             pg.draw.rect(screen, BLUE, (c*SQUARESIZE, r*SQUARESIZE+SQUARESIZE, SQUARESIZE, SQUARESIZE))
             pg.draw.circle(screen, BLACK, (int(c*SQUARESIZE+SQUARESIZE/2), int(r*SQUARESIZE+SQUARESIZE+SQUARESIZE/2)), RADIUS)
-     
+    # Player Pieces
     for c in range(COLUMN_COUNT):
         for r in range(ROW_COUNT):      
             if board[r][c] == 1:
@@ -109,13 +112,14 @@ draw_board(board)
 pg.display.update()
  
 myfont = pg.font.SysFont("arial", 75)
- 
+
+# A while not loop repeatedly executes the body of the loop until the condition for loop termination is met
 while not game_over:
  
     for event in pg.event.get():
         if event.type == pg.QUIT:
             sys.exit()
- 
+        # draws circle based on mouse position
         if event.type == pg.MOUSEMOTION:
             pg.draw.rect(screen, BLACK, (0,0, width, SQUARESIZE))
             posx = event.pos[0]
@@ -124,10 +128,10 @@ while not game_over:
             else: 
                 pg.draw.circle(screen, YELLOW, (posx, int(SQUARESIZE/2)), RADIUS)
         pg.display.update()
- 
+        # adds circle when you click your mouse
         if event.type == pg.MOUSEBUTTONDOWN:
             pg.draw.rect(screen, BLACK, (0,0, width, SQUARESIZE))
-            #print(event.pos)
+            # print(event.pos)
             # Ask for Player 1 Input
             if turn == 0:
                 posx = event.pos[0]
